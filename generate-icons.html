@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate Icons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      margin: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Icon Generator for Save Selected Text Extension</h1>
+  <p>Click the button below to generate and download all required icon sizes.</p>
+  <button onclick="generateAllIcons()">Generate All Icons</button>
+  <div id="canvases"></div>
+
+  <script>
+    function generateAllIcons() {
+      const sizes = [16, 32, 48, 128];
+      const container = document.getElementById('canvases');
+      container.innerHTML = '';
+
+      sizes.forEach(size => {
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+
+        // Draw a simple icon: blue background with white "S" text
+        ctx.fillStyle = '#4CAF50';
+        ctx.fillRect(0, 0, size, size);
+        
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = `bold ${size * 0.6}px Arial`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('S', size / 2, size / 2);
+
+        container.appendChild(canvas);
+
+        // Download the icon
+        canvas.toBlob(blob => {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `icon${size}.png`;
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+      });
+
+      alert('All icons have been downloaded! Place them in the icons/ folder.');
+    }
+  </script>
+</body>
+</html>
+

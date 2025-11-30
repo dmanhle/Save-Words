@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save Selected Text</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Saved text</h1>
+    
+    <!-- List of saved items -->
+    <div id="items-list" class="items-list">
+      <!-- Items will be dynamically inserted here -->
+    </div>
+    
+    <!-- Empty state message -->
+    <div id="empty-state" class="empty-state" style="display: none;">
+      No items saved yet
+    </div>
+    
+    <!-- Action buttons -->
+    <div class="actions">
+      <button id="copy-all-btn" class="btn btn-primary">Copy all</button>
+      <button id="delete-all-btn" class="btn btn-danger">Delete all</button>
+    </div>
+    
+    <!-- Status message -->
+    <div id="status-message" class="status-message"></div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
+
